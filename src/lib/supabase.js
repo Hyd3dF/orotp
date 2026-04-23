@@ -1,6 +1,21 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.trim()
+function normalizeSupabaseUrl(value) {
+  const url = value?.trim()
+
+  if (!url) {
+    return ''
+  }
+
+  if (typeof window !== 'undefined' && window.location.protocol === 'https:' && url.startsWith('http://')) {
+    console.warn('Supabase URL uses HTTP on an HTTPS page. Upgrading to HTTPS to avoid mixed-content blocking.')
+    return `https://${url.slice('http://'.length)}`
+  }
+
+  return url
+}
+
+const supabaseUrl = normalizeSupabaseUrl(import.meta.env.VITE_SUPABASE_URL)
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim()
 
 function createNoopResponse(message) {
