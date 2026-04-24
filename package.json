@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview --host 0.0.0.0",
-    "start": "serve -s dist --no-port-switching"
+    "preview": "npm run build && wrangler dev",
+    "start": "serve -s dist --no-port-switching",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.104.0",
@@ -20,6 +21,7 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.33.2",
     "@eslint/js": "^9.39.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -31,6 +33,7 @@
     "globals": "^17.5.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "wrangler": "^4.85.0"
   }
 }
