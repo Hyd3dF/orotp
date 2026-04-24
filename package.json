@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "serve -s dist -l 3000"
+    "preview": "vite preview --host 0.0.0.0",
+    "start": "serve -s dist --no-port-switching"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.104.0",
